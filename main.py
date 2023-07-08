@@ -10,7 +10,6 @@ mainLoop = True
 while mainLoop:
 
     widght, hight = pygame.display.get_surface().get_size()
-    print(widght, hight)
 
     screen.fill('green')
     pygame.draw.rect(screen, (255, 255, 255), 
