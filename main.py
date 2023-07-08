@@ -4,7 +4,7 @@ from pygame import *
 pygame.init()
 
 #Create a displace surface object
-screen = pygame.display.set_mode((700, 400), RESIZABLE)
+screen = pygame.display.set_mode((400, 400), RESIZABLE)
 
 mainLoop = True
 while mainLoop:
