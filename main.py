@@ -12,7 +12,7 @@ while mainLoop:
     widght, hight = pygame.display.get_surface().get_size()
     print(widght, hight)
 
-    screen.fill()
+    screen.fill('green')
     pygame.draw.rect(screen, (255, 255, 255), 
                  ((widght / 4), (hight / 4), (widght / 2), (hight / 2)))
 
