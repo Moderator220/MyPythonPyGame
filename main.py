@@ -8,9 +8,11 @@ screen = pygame.display.set_mode((700, 400), RESIZABLE)
 
 mainLoop = True
 while mainLoop:
+    screen.fill('blue')
 
     widght, hight = pygame.display.get_surface().get_size()
-    print(widght, hight)
+    pygame.draw.rect(screen, 'green', 
+                 (widght / 3, hight / 3, widght / 3, hight / 3))
 
     keys = pygame.key.get_pressed()
     for event in pygame.event.get():
