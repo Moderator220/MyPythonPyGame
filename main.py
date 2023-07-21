@@ -4,15 +4,16 @@ from pygame import *
 pygame.init()
 
 #Create a displace surface object
-screen = pygame.display.set_mode((700, 400), RESIZABLE)
+screen = pygame.display.set_mode((800, 400), RESIZABLE)
 
 mainLoop = True
 while mainLoop:
+    widght, hight = pygame.display.get_surface().get_size()
+
     screen.fill('blue')
 
     # sqr:
 
-    widght, hight = pygame.display.get_surface().get_size()
     pygame.draw.rect(screen, 'green', 
                  (widght / 3, hight / 3, widght / 3, hight / 3))
 
@@ -20,7 +21,7 @@ while mainLoop:
 
     label = pygame.font.Font('font.ttf', int(hight / 3))
 
-    next_label = label.render('привет', True, 'red')
+    next_label = label.render('при', True, 'red')
 
     next_label_x = widght / 3
     next_label_y = hight / 3
