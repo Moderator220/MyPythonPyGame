@@ -14,6 +14,8 @@ while mainLoop:
     pygame.draw.rect(screen, 'green', 
                  (widght / 3, hight / 3, widght / 3, hight / 3))
 
+    
+
     keys = pygame.key.get_pressed()
     for event in pygame.event.get():
         if event.type == pygame.QUIT or keys[pygame.K_ESCAPE]:
