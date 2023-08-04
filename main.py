@@ -1,40 +1,45 @@
 import pygame
 from pygame import *
 
+clock = pygame.time.Clock()
+
 pygame.init()
 
 #Create a displace surface object
 screen = pygame.display.set_mode((800, 400), RESIZABLE)
 
+aim_hight = 0
+aim_down = True
+
 mainLoop = True
 while mainLoop:
     widght, hight = pygame.display.get_surface().get_size()
-
+    mouse = pygame.mouse.get_pos()
+    keys = pygame.key.get_pressed()
     screen.fill('blue')
 
-    # sqr:
+    if aim_hight >= 48:
+        aim_down = False
+    elif aim_hight <= 0:
+        aim_down = True
 
-    pygame.draw.rect(screen, 'green', 
-                 (widght / 3, hight / 3, widght / 3, hight / 3))
+    if aim_down == False:
+        aim_hight -= 4
+    else:
+        aim_hight += 4
 
-    # font:
+    bg = pygame.transform.scale(pygame.image.load('images/fon/pixil-frame-0 (61).png'), (widght, hight))
+    tree = pygame.transform.scale(pygame.image.load('images/tree/pixil-frame-0 (60).png'), (widght/3, hight/5*4))
+    aim = pygame.transform.scale(pygame.image.load('images/aim/pixil-frame-0 (59).png'), (widght/22, hight/10))
 
-    label = pygame.font.Font('font.ttf', int(hight / 3))
+    screen.blit(bg, (0, 0))
+    screen.blit(tree, (widght/3*2, hight/5))
+    screen.blit(aim, (widght/5*3.9, (hight/3*2) + aim_hight))
 
-    next_label = label.render('при', True, 'red')
-
-    next_label_x = widght / 3
-    next_label_y = hight / 3
-    next_label_rect = next_label.get_rect(topleft=(next_label_x, next_label_y))
-
-    # blit font:
-
-    screen.blit(next_label, next_label_rect)
-
-    keys = pygame.key.get_pressed()
     for event in pygame.event.get():
         if event.type == pygame.QUIT or keys[pygame.K_ESCAPE]:
             mainLoop = False
     pygame.display.update()
+    clock.tick(5)
 
 pygame.quit()
