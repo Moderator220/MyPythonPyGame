@@ -3,6 +3,9 @@ from pygame import *
 
 clock = pygame.time.Clock()
 
+# path = 'c:/Users/VLAD/OneDrive/Documents/Sashas_PyGame'
+path = ''
+
 pygame.init()
 
 #Create a displace surface object
@@ -28,9 +31,9 @@ while mainLoop:
     else:
         aim_hight += 4
 
-    bg = pygame.transform.scale(pygame.image.load('images/fon/pixil-frame-0 (61).png'), (widght, hight))
-    tree = pygame.transform.scale(pygame.image.load('images/tree/pixil-frame-0 (60).png'), (widght/3, hight/5*4))
-    aim = pygame.transform.scale(pygame.image.load('images/aim/pixil-frame-0 (59).png'), (widght/22, hight/10))
+    bg = pygame.transform.scale(pygame.image.load(path + 'images/fon/pixil-frame-0 (61).png'), (widght, hight))
+    tree = pygame.transform.scale(pygame.image.load(path + 'images/tree/pixil-frame-0 (60).png'), (widght/3, hight/5*4))
+    aim = pygame.transform.scale(pygame.image.load(path + 'images/aim/pixil-frame-0 (59).png'), (widght/22, hight/10))
 
     screen.blit(bg, (0, 0))
     screen.blit(tree, (widght/3*2, hight/5))
