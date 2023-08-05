@@ -3,7 +3,7 @@ from pygame import *
 
 clock = pygame.time.Clock()
 
-# path = 'c:/Users/VLAD/OneDrive/Documents/Sashas_PyGame'
+# path = 'c:/Users/VLAD/OneDrive/Documents/Sashas_PyGame/'
 path = ''
 
 pygame.init()
