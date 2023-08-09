@@ -36,10 +36,17 @@ while mainLoop:
         bg = pygame.transform.scale(pygame.image.load(path + 'images/fon/pixil-frame-0 (61).png'), (widght, hight))
         tree = pygame.transform.scale(pygame.image.load(path + 'images/tree/pixil-frame-0 (60).png'), (widght/3, hight/5*4))
         aim = pygame.transform.scale(pygame.image.load(path + 'images/aim/pixil-frame-0 (59).png'), (widght/22, hight/10))
+        stop = pygame.transform.scale(pygame.image.load(path + 'images/buttons/pixil-frame-0 (97).png'), (widght/20, hight/10))
+
+        stop_rect = stop.get_rect(topleft=(0, 0))
 
         screen.blit(bg, (0, 0))
         screen.blit(tree, (widght/3*2, hight/5))
         screen.blit(aim, (widght/5*3.9, (hight/3*2) + aim_hight))
+        screen.blit(stop, stop_rect)
+
+        if stop_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0]:
+            status = 'MENU'
 
     elif status == 'MENU':
         bg = pygame.transform.scale(pygame.image.load(path + 'images/gray/pixil-frame-0 (61) (1).png'), (widght, hight))
@@ -69,7 +76,7 @@ while mainLoop:
         baby = pygame.transform.scale(pygame.image.load(path + 'images/buttons/pixil-frame-0 (90).png'), (widght/10, hight/7))
         super_market = pygame.transform.scale(pygame.image.load(path + 'images/buttons/pixil-frame-0 (91).png'), (widght/10, hight/7))
         play = pygame.transform.scale(pygame.image.load(path + 'images/buttons/pixil-frame-0 (93).png'), (widght/8, hight/7))
-
+        
         play_rect = play.get_rect(topleft=(widght-widght/8, hight-hight/7))
 
         screen.blit(bg, (0, 0))
