@@ -1,5 +1,7 @@
 import pygame
 from pygame import *
+import win32gui
+import win32con
 
 clock = pygame.time.Clock()
 
@@ -9,7 +11,8 @@ path = ''
 pygame.init()
 
 #Create a displace surface object
-screen = pygame.display.set_mode((800, 400), RESIZABLE)
+screen = pygame.display.set_mode((800, 400), RESIZABLE, )
+win32gui.SetWindowPos(win32gui.GetForegroundWindow(), win32con.HWND_TOPMOST, 0, 0, 0, 0, win32con.SWP_NOSIZE)
 
 aim_hight = 0
 aim_down = True
@@ -37,7 +40,7 @@ while mainLoop:
         tree = pygame.transform.scale(pygame.image.load(path + 'images/tree/pixil-frame-0 (60).png'), (widght/3, hight/5*4))
         aim = pygame.transform.scale(pygame.image.load(path + 'images/aim/pixil-frame-0 (59).png'), (widght/22, hight/10))
         stop = pygame.transform.scale(pygame.image.load(path + 'images/buttons/pixil-frame-0 (97).png'), (widght/20, hight/10))
-
+        
         stop_rect = stop.get_rect(topleft=(0, 0))
 
         screen.blit(bg, (0, 0))
@@ -78,15 +81,65 @@ while mainLoop:
         play = pygame.transform.scale(pygame.image.load(path + 'images/buttons/pixil-frame-0 (93).png'), (widght/8, hight/7))
         
         play_rect = play.get_rect(topleft=(widght-widght/8, hight-hight/7))
+        capsuls_rect = capsuls.get_rect(topleft=(0, hight/5))
+        baby_rect = baby.get_rect(topleft=(0, hight/5*2))
+        super_market_rect = super_market.get_rect(topleft=(0, hight/5*3))
 
         screen.blit(bg, (0, 0))
-        screen.blit(capsuls, (0, hight/5))
-        screen.blit(baby, (0, hight/5*2))
-        screen.blit(super_market, (0, hight/5*3))
+        screen.blit(capsuls, capsuls_rect)
+        screen.blit(baby, baby_rect)
+        screen.blit(super_market, super_market_rect)
         screen.blit(play, play_rect)
 
         if play_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0]:
             status = 'GAME'
+
+        if capsuls_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0]:
+            status = 'CAPSULS'
+        
+        if baby_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0]:
+            status = 'BABY'
+
+        if super_market_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0]:
+            status = 'SUPER_MARKET'
+
+    elif status == 'CAPSULS':
+        capsuls = pygame.transform.scale(pygame.image.load(path + 'images/three tabs/cap.png'), (widght/5, hight/3))
+        bg_cap = pygame.transform.scale(pygame.image.load(path + 'images/three tabs/bg_cap.png'), (widght, hight))
+        back = pygame.transform.scale(pygame.image.load(path + 'images/buttons/back.png'), (widght/7, hight/7))
+
+        back_rect = back.get_rect(topleft=(widght-widght/7, 0))
+
+        screen.blit(bg_cap, (0, 0))
+        screen.blit(capsuls, (widght/5*2, hight/10))
+        screen.blit(back, back_rect)
+
+        if back_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0]:
+            status = 'MAIN_MENU'
+
+    elif status == 'BABY':
+        bg_st = pygame.transform.scale(pygame.image.load(path + 'images/three tabs/bg_st.png'), (widght, hight))
+        back = pygame.transform.scale(pygame.image.load(path + 'images/buttons/back.png'), (widght/7, hight/7))
+
+        back_rect = back.get_rect(topleft=(widght-widght/7, 0))
+
+        screen.blit(bg_st, (0, 0))
+        screen.blit(back, back_rect)
+
+        if back_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0]:
+            status = 'MAIN_MENU'
+
+    elif status == 'SUPER_MARKET':
+        frg = pygame.transform.scale(pygame.image.load(path + 'images/three tabs/frg.png'), (widght, hight))
+        back = pygame.transform.scale(pygame.image.load(path + 'images/buttons/back.png'), (widght/7, hight/7))
+
+        back_rect = back.get_rect(topleft=(widght-widght/7, 0))
+        
+        screen.blit(frg, (0, 0))
+        screen.blit(back, back_rect)
+
+        if back_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0]:
+            status = 'MAIN_MENU'
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT or keys[pygame.K_ESCAPE]:
