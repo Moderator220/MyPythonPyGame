@@ -120,11 +120,18 @@ while mainLoop:
     elif status == 'BABY':
         bg_st = pygame.transform.scale(pygame.image.load(path + 'images/three tabs/bg_st.png'), (widght, hight))
         back = pygame.transform.scale(pygame.image.load(path + 'images/buttons/back.png'), (widght/7, hight/7))
+        blek = pygame.transform.scale(pygame.image.load(path + 'images/sticmans/b.png'), (widght/7, hight/3))
+        red = pygame.transform.scale(pygame.image.load(path + 'images/sticmans/r.png'), (widght/7, hight/3))
 
         back_rect = back.get_rect(topleft=(widght-widght/7, 0))
+        blek_rect = blek.get_rect(topleft=(3, 0))
+        red_rect = red.get_rect(topleft=(200, 0))
+
 
         screen.blit(bg_st, (0, 0))
         screen.blit(back, back_rect)
+        screen.blit(blek, blek_rect)
+        screen.blit(red, red_rect)
 
         if back_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0]:
             status = 'MAIN_MENU'
@@ -132,12 +139,12 @@ while mainLoop:
     elif status == 'SUPER_MARKET':
         frg = pygame.transform.scale(pygame.image.load(path + 'images/three tabs/frg.png'), (widght, hight))
         back = pygame.transform.scale(pygame.image.load(path + 'images/buttons/back.png'), (widght/7, hight/7))
-
-        back_rect = back.get_rect(topleft=(widght-widght/7, 0))
         
+        back_rect = back.get_rect(topleft=(widght-widght/7, 0))
+                
         screen.blit(frg, (0, 0))
         screen.blit(back, back_rect)
-
+        
         if back_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0]:
             status = 'MAIN_MENU'
 
