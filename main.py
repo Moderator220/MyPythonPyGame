@@ -1,7 +1,7 @@
 import pygame
 from pygame import *
-import win32gui
-import win32con
+# import win32gui
+# import win32con
 
 clock = pygame.time.Clock()
 
@@ -12,7 +12,7 @@ pygame.init()
 
 #Create a displace surface object
 screen = pygame.display.set_mode((800, 400), RESIZABLE, )
-win32gui.SetWindowPos(win32gui.GetForegroundWindow(), win32con.HWND_TOPMOST, 0, 0, 0, 0, win32con.SWP_NOSIZE)
+# win32gui.SetWindowPos(win32gui.GetForegroundWindow(), win32con.HWND_TOPMOST, 0, 0, 0, 0, win32con.SWP_NOSIZE)
 
 aim_hight = 0
 aim_down = True
