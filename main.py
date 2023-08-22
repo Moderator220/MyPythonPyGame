@@ -2,6 +2,7 @@ import pygame
 from pygame import *
 import win32gui
 import win32con
+import time
 
 clock = pygame.time.Clock()
 
@@ -16,6 +17,12 @@ win32gui.SetWindowPos(win32gui.GetForegroundWindow(), win32con.HWND_TOPMOST, 0, 
 
 aim_hight = 0
 aim_down = True
+
+# fps
+start_time = time.time()
+time_int = 1
+counter = 0
+fps = ''
 
 status = 'MAIN_MENU'
 mainLoop = True
@@ -147,6 +154,17 @@ while mainLoop:
         
         if back_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0]:
             status = 'MAIN_MENU'
+
+    # fps
+    font = pygame.font.Font(None, 20)
+
+    counter += 1
+    if (time.time() - start_time) > time_int:
+        fps = "FPS: " + str(int(counter / (time.time() - start_time)))
+        counter = 0
+        start_time = time.time()
+
+    screen.blit(font.render(fps, True, (180, 0, 0)), (0, 0))
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT or keys[pygame.K_ESCAPE]:
