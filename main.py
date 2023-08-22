@@ -5,7 +5,6 @@ from pygame import *
 
 clock = pygame.time.Clock()
 
-# path = 'c:/Users/VLAD/OneDrive/Documents/Sashas_PyGame/'
 path = ''
 
 pygame.init()
@@ -16,6 +15,12 @@ screen = pygame.display.set_mode((800, 400), RESIZABLE, )
 
 aim_hight = 0
 aim_down = True
+
+# fps
+start_time = time.time()
+time_int = 1
+counter = 0
+fps = ''
 
 status = 'MAIN_MENU'
 mainLoop = True
@@ -147,6 +152,17 @@ while mainLoop:
         
         if back_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0]:
             status = 'MAIN_MENU'
+
+    # fps
+    font = pygame.font.Font(None, 20)
+
+    counter += 1
+    if (time.time() - start_time) > time_int:
+        fps = "FPS: " + str(int(counter / (time.time() - start_time)))
+        counter = 0
+        start_time = time.time()
+
+    screen.blit(font.render(fps, True, (180, 0, 0)), (0, 0))
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT or keys[pygame.K_ESCAPE]:
