@@ -17,6 +17,8 @@ screen = pygame.display.set_mode((800, 400), RESIZABLE, )
 aim_hight = 0
 aim_down = True
 
+stikman_name = 'b'
+
 # fps
 start_time = time.time()
 time_int = 1
@@ -85,17 +87,20 @@ while mainLoop:
         baby = pygame.transform.scale(pygame.image.load(path + 'images/buttons/pixil-frame-0 (90).png'), (widght/10, hight/7))
         super_market = pygame.transform.scale(pygame.image.load(path + 'images/buttons/pixil-frame-0 (91).png'), (widght/10, hight/7))
         play = pygame.transform.scale(pygame.image.load(path + 'images/buttons/pixil-frame-0 (93).png'), (widght/8, hight/7))
-        
+        stikman = pygame.transform.scale(pygame.image.load(path + f'images/sticmans/{stikman_name}.png'), (widght/8, hight/2))
+
         play_rect = play.get_rect(topleft=(widght-widght/8, hight-hight/7))
         capsuls_rect = capsuls.get_rect(topleft=(0, hight/5))
         baby_rect = baby.get_rect(topleft=(0, hight/5*2))
         super_market_rect = super_market.get_rect(topleft=(0, hight/5*3))
+        stikman_rect = stikman.get_rect(topleft=(widght/2, hight/5*2))
 
         screen.blit(bg, (0, 0))
         screen.blit(capsuls, capsuls_rect)
         screen.blit(baby, baby_rect)
         screen.blit(super_market, super_market_rect)
         screen.blit(play, play_rect)
+        screen.blit(stikman, stikman_rect)
 
         if play_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0]:
             status = 'GAME'
@@ -130,8 +135,8 @@ while mainLoop:
         red = pygame.transform.scale(pygame.image.load(path + 'images/sticmans/r.png'), (widght/7, hight/3))
 
         back_rect = back.get_rect(topleft=(widght-widght/7, 0))
-        blek_rect = blek.get_rect(topleft=(3, 0))
-        red_rect = red.get_rect(topleft=(200, 0))
+        blek_rect = blek.get_rect(topleft=(widght/16, 0))
+        red_rect = red.get_rect(topleft=(widght/4, 0))
 
 
         screen.blit(bg_st, (0, 0))
@@ -142,16 +147,37 @@ while mainLoop:
         if back_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0]:
             status = 'MAIN_MENU'
 
+        if blek_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0]:
+            status = 'MAIN_MENU'
+            stikman_name = 'b'
+
+        if red_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0]:
+            status = 'MAIN_MENU'
+            stikman_name = 'r'
+
     elif status == 'SUPER_MARKET':
         frg = pygame.transform.scale(pygame.image.load(path + 'images/three tabs/frg.png'), (widght, hight))
         back = pygame.transform.scale(pygame.image.load(path + 'images/buttons/back.png'), (widght/7, hight/7))
+        l_blek = pygame.transform.scale(pygame.image.load(path + 'images/bow/l_b.png'), (widght/8, hight/4))
+        l_red = pygame.transform.scale(pygame.image.load(path + 'images/bow/l_r.png'), (widght/8, hight/4))
+
         
         back_rect = back.get_rect(topleft=(widght-widght/7, 0))
+        l_blek_rect = l_blek.get_rect(topleft=(widght/16, 10))
+        l_red_rect = l_red.get_rect(topleft=(widght/4, 10))
                 
         screen.blit(frg, (0, 0))
         screen.blit(back, back_rect)
+        screen.blit(l_blek, l_blek_rect)
+        screen.blit(l_red, l_red_rect)
         
         if back_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0]:
+            status = 'MAIN_MENU'
+
+        if l_blek_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0]:
+            status = 'MAIN_MENU'
+
+        if l_red_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0]:
             status = 'MAIN_MENU'
 
     # fps
