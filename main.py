@@ -11,7 +11,7 @@ path = ''
 pygame.init()
 
 #Create a displace surface object
-screen = pygame.display.set_mode((800, 400), RESIZABLE, )
+screen = pygame.display.set_mode((800, 400), RESIZABLE)
 # win32gui.SetWindowPos(win32gui.GetForegroundWindow(), win32con.HWND_TOPMOST, 0, 0, 0, 0, win32con.SWP_NOSIZE)
 
 aim_hight = 0
@@ -32,25 +32,25 @@ while mainLoop:
     widght, hight = pygame.display.get_surface().get_size()
     mouse = pygame.mouse.get_pos()
     keys = pygame.key.get_pressed()
-    screen.fill('blue')
+    screen.fill('black')
 
     if status == 'GAME':
-        if aim_hight >= widght/15:
+        if aim_hight >= int(widght/15):
             aim_down = False
         elif aim_hight <= 0:
             aim_down = True
 
         if aim_down == False:
-            aim_hight -= 1.5*(hight/400)
+            aim_hight -= int(1.5*(hight/400))
         else:
-            aim_hight += 1.5*(hight/400)
+            aim_hight += int(1.5*(hight/400))
 
-        bg = pygame.transform.scale(pygame.image.load(path + 'images/fon/pixil-frame-0 (61).png'), (widght, hight))
+        bg = pygame.transform.scale(pygame.image.load(path + 'images/fon/pixil-frame-0 (61).png'), (int(widght), int(hight)))
         tree = pygame.transform.scale(pygame.image.load(path + 'images/tree/pixil-frame-0 (60).png'), (int(widght/3), int(hight/5*4)))
         aim = pygame.transform.scale(pygame.image.load(path + 'images/aim/pixil-frame-0 (59).png'), (int(widght/22), int(hight/10)))
         stop = pygame.transform.scale(pygame.image.load(path + 'images/buttons/pixil-frame-0 (97).png'), (int(widght/20), int(hight/10)))
         
-        stop_rect = stop.get_rect(topleft=(0, 0))
+        stop_rect = stop.get_rect(topleft=(int(0), int(0)))
 
         screen.blit(bg, (0, 0))
         screen.blit(tree, (int(widght/3*2), int(hight/5)))
@@ -61,16 +61,16 @@ while mainLoop:
             status = 'MENU'
 
     elif status == 'MENU':
-        bg = pygame.transform.scale(pygame.image.load(path + 'images/gray/pixil-frame-0 (61) (1).png'), (widght, hight))
+        bg = pygame.transform.scale(pygame.image.load(path + 'images/gray/pixil-frame-0 (61) (1).png'), (int(widght), int(hight)))
         tree = pygame.transform.scale(pygame.image.load(path + 'images/gray/pixil-frame-0 (60) (1).png'), (int(widght/3), int(hight/5*4)))
         aim = pygame.transform.scale(pygame.image.load(path + 'images/gray/pixil-frame-0 (59) (1).png'), (int(widght/22), int(hight/10)))
         main_menu = pygame.transform.scale(pygame.image.load(path + 'images/buttons/pixil-frame-0 (86).png'), (int(widght/5), int(hight/5.5)))
-        continue_the_game = pygame.transform.scale(pygame.image.load(path + 'images/buttons/pixil-frame-0 (88).png'), (int(widght/5, hight/5.5)))
+        continue_the_game = pygame.transform.scale(pygame.image.load(path + 'images/buttons/pixil-frame-0 (88).png'), (int(widght/5), int(hight/5.5)))
 
-        continue_the_game_rect = continue_the_game.get_rect(topleft=int((widght/5*2), int(hight/4*2)))
+        continue_the_game_rect = continue_the_game.get_rect(topleft=(int(widght/5*2), int(hight/4*2)))
         main_menu_rect = main_menu.get_rect(topleft=(int(widght/5*2), int(hight/4)))
 
-        screen.blit(bg, (0, 0))
+        screen.blit(bg, (int(0), int(0)))
         screen.blit(tree, (int(widght/3*2), int(hight/5)))
         screen.blit(aim, (int(widght/5*3.9), int((hight/3*2) + aim_hight)))
         screen.blit(main_menu, main_menu_rect)
@@ -83,22 +83,22 @@ while mainLoop:
             status = 'MAIN_MENU'
 
     elif status == 'MAIN_MENU':
-        bg = pygame.transform.scale(pygame.image.load(path + 'images/fon/pixil-frame-0 (92).png'), (widght, hight))
+        bg = pygame.transform.scale(pygame.image.load(path + 'images/fon/pixil-frame-0 (92).png'), (int(widght), int(hight)))
         capsuls = pygame.transform.scale(pygame.image.load(path + 'images/buttons/pixil-frame-0 (89).png'), (int(widght/10), int(hight/7)))
-        baby = pygame.transform.scale(pygame.image.load(path + 'images/buttons/pixil-frame-0 (90).png'), (int(widght/10, hight/7)))
+        baby = pygame.transform.scale(pygame.image.load(path + 'images/buttons/pixil-frame-0 (90).png'), (int(widght/10), int(hight/7)))
         super_market = pygame.transform.scale(pygame.image.load(path + 'images/buttons/pixil-frame-0 (91).png'), (int(widght/10), int(hight/7)))
         play = pygame.transform.scale(pygame.image.load(path + 'images/buttons/pixil-frame-0 (93).png'), (int(widght/8), int(hight/7)))
-        stikman = pygame.transform.scale(pygame.image.load(path + f'images/sticmans/{stikman_name}.png'), (int(widght/8), int(hight/2))))
+        stikman = pygame.transform.scale(pygame.image.load(path + f'images/sticmans/{stikman_name}.png'), (int(widght/8), int(hight/2)))
         bows = pygame.transform.scale(pygame.image.load(path + f'images/bow/{bows_name}.png'), (int(widght/13), int(hight/4)))
 
         play_rect = play.get_rect(topleft=(int(widght-widght/8), int(hight-hight/7)))
-        capsuls_rect = capsuls.get_rect(topleft=(0, int(hight/5)))
-        baby_rect = baby.get_rect(topleft=(0, int(hight/5*2)))
-        super_market_rect = super_market.get_rect(topleft=(0, int(hight/5*3)))
+        capsuls_rect = capsuls.get_rect(topleft=(int(0), int(hight/5)))
+        baby_rect = baby.get_rect(topleft=(int(0), int(hight/5*2)))
+        super_market_rect = super_market.get_rect(topleft=(int(0), int(hight/5*3)))
         stikman_rect = stikman.get_rect(topleft=(int(widght/2), int(hight/5*2)))
         bows_rect = bows.get_rect(topleft=(int(widght/5*3), int(hight/3*2)))
 
-        screen.blit(bg, (0, 0))
+        screen.blit(bg, (int(0), int(0)))
         screen.blit(capsuls, capsuls_rect)
         screen.blit(baby, baby_rect)
         screen.blit(super_market, super_market_rect)
@@ -120,30 +120,30 @@ while mainLoop:
 
     elif status == 'CAPSULS':
         capsuls = pygame.transform.scale(pygame.image.load(path + 'images/three tabs/cap.png'), (int(widght/5), int(hight/3)))
-        bg_cap = pygame.transform.scale(pygame.image.load(path + 'images/three tabs/bg_cap.png'), (widght, hight))
-        back = pygame.transform.scale(pygame.image.load(path + 'images/buttons/back.png'), (widght/7, hight/7))
+        bg_cap = pygame.transform.scale(pygame.image.load(path + 'images/three tabs/bg_cap.png'), (int(widght), int(hight)))
+        back = pygame.transform.scale(pygame.image.load(path + 'images/buttons/back.png'), (int(widght/7), int(hight/7)))
 
-        back_rect = back.get_rect(topleft=(widght-widght/7, 0))
+        back_rect = back.get_rect(topleft=(int(widght-widght/7), int(0)))
 
-        screen.blit(bg_cap, (0, 0))
-        screen.blit(capsuls, (widght/5*2, hight/10))
+        screen.blit(bg_cap, (int(0), int(0)))
+        screen.blit(capsuls, (int(widght/5*2), int(hight/10)))
         screen.blit(back, back_rect)
 
         if back_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0]:
             status = 'MAIN_MENU'
 
     elif status == 'BABY':
-        bg_st = pygame.transform.scale(pygame.image.load(path + 'images/three tabs/bg_st.png'), (widght, hight))
-        back = pygame.transform.scale(pygame.image.load(path + 'images/buttons/back.png'), (widght/7, hight/7))
-        blek = pygame.transform.scale(pygame.image.load(path + 'images/sticmans/b.png'), (widght/7, hight/3))
-        red = pygame.transform.scale(pygame.image.load(path + 'images/sticmans/r.png'), (widght/7, hight/3))
+        bg_st = pygame.transform.scale(pygame.image.load(path + 'images/three tabs/bg_st.png'), (int(widght), int(hight)))
+        back = pygame.transform.scale(pygame.image.load(path + 'images/buttons/back.png'), (int(widght/7), int(hight/7)))
+        blek = pygame.transform.scale(pygame.image.load(path + 'images/sticmans/b.png'), (int(widght/7), int(hight/3)))
+        red = pygame.transform.scale(pygame.image.load(path + 'images/sticmans/r.png'), (int(widght/7), int(hight/3)))
 
-        back_rect = back.get_rect(topleft=(widght-widght/7, 0))
-        blek_rect = blek.get_rect(topleft=(widght/16, 0))
-        red_rect = red.get_rect(topleft=(widght/4, 0))
+        back_rect = back.get_rect(topleft=(int(widght-widght/7), int(0)))
+        blek_rect = blek.get_rect(topleft=(int(widght/16), int(0)))
+        red_rect = red.get_rect(topleft=(int(widght/4), int(0)))
 
 
-        screen.blit(bg_st, (0, 0))
+        screen.blit(bg_st, (int(0), int(0)))
         screen.blit(back, back_rect)
         screen.blit(blek, blek_rect)
         screen.blit(red, red_rect)
@@ -160,17 +160,17 @@ while mainLoop:
             stikman_name = 'r'
 
     elif status == 'SUPER_MARKET':
-        frg = pygame.transform.scale(pygame.image.load(path + 'images/three tabs/frg.png'), (widght, hight))
-        back = pygame.transform.scale(pygame.image.load(path + 'images/buttons/back.png'), (widght/7, hight/7))
-        l_blek = pygame.transform.scale(pygame.image.load(path + 'images/bow/l_b.png'), (widght/8, hight/4))
-        l_red = pygame.transform.scale(pygame.image.load(path + 'images/bow/l_r.png'), (widght/8, hight/4))
+        frg = pygame.transform.scale(pygame.image.load(path + 'images/three tabs/frg.png'), (int(widght), int(hight)))
+        back = pygame.transform.scale(pygame.image.load(path + 'images/buttons/back.png'), (int(widght/7), int(hight/7)))
+        l_blek = pygame.transform.scale(pygame.image.load(path + 'images/bow/l_b.png'), (int(widght/8), int(hight/4)))
+        l_red = pygame.transform.scale(pygame.image.load(path + 'images/bow/l_r.png'), (int(widght/8), int(hight/4)))
 
         
-        back_rect = back.get_rect(topleft=(widght-widght/7, 0))
-        l_blek_rect = l_blek.get_rect(topleft=(widght/16, 10))
-        l_red_rect = l_red.get_rect(topleft=(widght/4, 10))
+        back_rect = back.get_rect(topleft=(int(widght-widght/7), int(0)))
+        l_blek_rect = l_blek.get_rect(topleft=(int(widght/16), int(hight/40)))
+        l_red_rect = l_red.get_rect(topleft=(int(widght/4), int(hight/40)))
                 
-        screen.blit(frg, (0, 0))
+        screen.blit(frg, (int(0), int(0)))
         screen.blit(back, back_rect)
         screen.blit(l_blek, l_blek_rect)
         screen.blit(l_red, l_red_rect)
