@@ -45,17 +45,23 @@ while mainLoop:
         else:
             aim_hight += int(1.5*(hight/400))
 
-        bg = pygame.transform.scale(pygame.image.load(path + 'images/fon/pixil-frame-0 (61).png'), (int(widght), int(hight)))
+        bg = pygame.transform.scale(pygame.image.load(path + 'images/fon/pixil-frame-0 (61).png'), (widght, hight))
         tree = pygame.transform.scale(pygame.image.load(path + 'images/tree/pixil-frame-0 (60).png'), (int(widght/3), int(hight/5*4)))
         aim = pygame.transform.scale(pygame.image.load(path + 'images/aim/pixil-frame-0 (59).png'), (int(widght/22), int(hight/10)))
         stop = pygame.transform.scale(pygame.image.load(path + 'images/buttons/pixil-frame-0 (97).png'), (int(widght/20), int(hight/10)))
-        
-        stop_rect = stop.get_rect(topleft=(int(0), int(0)))
+        stikman = pygame.transform.scale(pygame.image.load(path + f'images/sticmans/{stikman_name}.png'), (int(widght/12), int(hight/4)))
+        bows = pygame.transform.scale(pygame.image.load(path + f'images/bow/{bows_name}.png'), (int(widght/17), int(hight/8)))
+
+        stop_rect = stop.get_rect(topleft=(0, 0))
+        stikman_rect = stikman.get_rect(topleft=(int(widght/6*2), int(hight/6*4)))
+        bows_rect = bows.get_rect(topleft=(int(widght/5*2), int(hight/4*3)))
 
         screen.blit(bg, (0, 0))
         screen.blit(tree, (int(widght/3*2), int(hight/5)))
         screen.blit(aim, (int(widght/5*3.9), int((hight/3*2) + aim_hight)))
         screen.blit(stop, stop_rect)
+        screen.blit(stikman, stikman_rect)
+        screen.blit(bows, bows_rect)
 
         if stop_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0]:
             status = 'MENU'
